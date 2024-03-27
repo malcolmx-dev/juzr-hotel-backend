@@ -27,7 +27,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use((req, res, next) => {
-  const allowedOrigins = ['http://localhost:3001', 'https://malcolmx-dev.github.io/juzr-hotel/'];
+  const allowedOrigins = ['http://localhost:3001', 'https://malcolmx-dev.github.io'];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
        res.setHeader('Access-Control-Allow-Origin', origin);
