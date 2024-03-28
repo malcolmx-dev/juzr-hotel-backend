@@ -11,10 +11,10 @@ const register = async (req, res, next) => {
             username:req.body.username,
             password: hash,
         })
-        await newadmin.save()
-        res.status(200).send("Admin has been created")
-    }catch{
-        next()
+        await newAdmin.save()
+        res.status(200).json("Admin has been created")
+    }catch(err){
+        next(err)
     }
 }
 const login = async (req, res, next) => {
