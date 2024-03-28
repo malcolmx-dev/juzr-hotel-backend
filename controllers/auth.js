@@ -11,9 +11,9 @@ const register = async (req, res, next) => {
             surname: req.body.surname,
         })
         await newUser.save()
-        res.status(200).send("User has been created")
-    }catch{
-        next()
+        res.status(200).json("User has been created")
+    }catch(err){
+        next(err)
     }
 }
 const login = async (req, res, next) => {
