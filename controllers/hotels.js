@@ -75,15 +75,13 @@ const countByIsland = async (req, res, next) => {
 const countByType = async (req, res, next) => {
     try{
     const hotelCount= await Hotels.countDocuments({type:'Hotel'})
-    const villaCount= await Hotels.countDocuments({type:'Villa'})
-    const bungalowCount= await Hotels.countDocuments({type:'Bungalow'})
-    const appartmentCount= await Hotels.countDocuments({type:'Appartement'})
+    const roomCount= await Hotels.countDocuments({type:"Chambre d'hôte"})
+    const houseCount= await Hotels.countDocuments({type:'Appartement&Maison'})
 
         res.status(200).json([
             {type:'Hotel', count:hotelCount},
-            {type:'Villa', count:villaCount},
-            {type:'Bungalow', count:bungalowCount},
-            {type:'Appartement', count:appartmentCount}]
+            {type:"Chambre d'hôte", count:roomCount},
+            {type:'Appartement&Maison', count:houseCount}]
         )
     }catch(err){
         next(err)

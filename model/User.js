@@ -2,11 +2,10 @@
 const mongoose= require('mongoose')
 
 const userShema = mongoose.Schema({
-    username:{type: String, required:true, unique: true },
+    name:{type: String, required:true },
     email:{type: String, required:true, unique: true },
-    password: {type: String, required:true },
-    isAdmin:{type: Boolean, default:false },
-    hotelId:{type:String, default:null}
+    surname: {type: String, required:true },
+
 }, {timestamps:true})
 
 

@@ -3,6 +3,7 @@ const mongoose= require('mongoose')
 const path = require('path')
 const hotelsRoutes = require('./routes/hotels')
 const authRoutes = require('./routes/auth')
+const authAdminRoutes = require('./routes/authAdmin')
 const userRoutes = require('./routes/user')
 const roomRoutes = require('./routes/rooms')
 
@@ -27,7 +28,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use((req, res, next) => {
-  const allowedOrigins = ['http://localhost:3001', 'https://malcolmx-dev.github.io'];
+  const allowedOrigins = ['http://localhost:3000', 'https://malcolmx-dev.github.io'];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
        res.setHeader('Access-Control-Allow-Origin', origin);
@@ -45,6 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/api/hotels', hotelsRoutes)
 app.use('/api/auth', authRoutes)
+app.use('/api/authAdmin', authAdminRoutes)
 app.use('/api/user', userRoutes)
 app.use("/api/rooms", roomRoutes)
 
