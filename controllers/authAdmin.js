@@ -19,7 +19,7 @@ const register = async (req, res, next) => {
 }
 const login = async (req, res, next) => {
     try{
-        const admin = await Admin.findOne({ usernamename: req.body.username })
+        const admin = await Admin.findOne({ username: req.body.username })
         if(!admin) {
             return next(createError(404, "Admin not found !"))
         }
@@ -27,10 +27,7 @@ const login = async (req, res, next) => {
         if(!isPasswordCorrect){
             return next(createError(400, "Wrong password or username !"))
         }
-        if (req.body.password===process.env.ADMIN_PASS){
-            admin.isAdmin= true
-            admin.save()
-        }
+
         
         const token= jwt.sign({id: admin._id, isAdmin: admin.isAdmin}, process.env.JWT)
 
