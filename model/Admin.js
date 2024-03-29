@@ -4,7 +4,7 @@ const mongoose= require('mongoose')
 const adminShema = mongoose.Schema({
     username:{type: String, required:true },
     password: {type: String, required:true },
-    isAdmin:{type: Boolean, default:false },
+    isAdmin:{type: Boolean, default:true },
     hotelId:{type:String, default:null}
 }, {timestamps:true})
 
