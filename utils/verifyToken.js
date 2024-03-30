@@ -4,7 +4,7 @@ const jwt= require('jsonwebtoken')
 const verifyToken = (req, res, next) => {
     const token = req.cookies.access_token
     if(!token){ 
-        return res.json(req.cookies)
+        return next(createError(401, 'User not verified'))
     }
     jwt.verify(token, process.env.JWT, (err, user) => {
         if (err) return next(createError(403, 'Token is wrong'));
