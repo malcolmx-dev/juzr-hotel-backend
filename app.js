@@ -7,6 +7,8 @@ const authAdminRoutes = require('./routes/authAdmin')
 const userRoutes = require('./routes/user')
 const roomRoutes = require('./routes/rooms')
 
+
+
 const cors = require("cors");
 var cookies = require("cookie-parser");
 
@@ -49,6 +51,8 @@ app.use('/api/auth', authRoutes)
 app.use('/api/authAdmin', authAdminRoutes)
 app.use('/api/user', userRoutes)
 app.use("/api/rooms", roomRoutes)
+
+
 
 app.use((err, req, res, next) => {
     const errorStatus= err.status||500

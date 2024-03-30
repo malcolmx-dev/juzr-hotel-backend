@@ -1,6 +1,8 @@
 const Hotels = require("../model/Hotels")
 const Room = require("../model/Room")
 const User = require("../model/User")
+const Admin = require("../model/Admin")
+
 
 
 const createHotel = async (req, res, next) => {
@@ -9,7 +11,7 @@ const createHotel = async (req, res, next) => {
     try{
         
         const savedHotel= await newHotel.save()
-        await User.findByIdAndUpdate(req.params.userId, {$set: {
+        await Admin.findByIdAndUpdate(req.params.userId, {$set: {
             
             hotelId: savedHotel._id
         }}, {$new:true})
