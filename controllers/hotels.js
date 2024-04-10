@@ -2,6 +2,7 @@ const Hotels = require("../model/Hotels")
 const Room = require("../model/Room")
 const User = require("../model/User")
 const Admin = require("../model/Admin")
+const Search = require("../model/Search")
 
 
 
@@ -11,11 +12,16 @@ const createHotel = async (req, res, next) => {
     try{
         
         const savedHotel= await newHotel.save()
+        const searchHotel= await Search.findOne({city: req.body.city})
+        if(!searchHotel){
+            await new Search({city: req.body.city, island:req.body.island}).save()
+        }
         await Admin.findByIdAndUpdate(req.params.userId, {$set: {
             
             hotelId: savedHotel._id
         }}, {$new:true})
         res.status(200).json(savedHotel)
+
         
     }catch(err){
         next(err)
@@ -102,15 +108,6 @@ const getHotelRooms = async (req, res, next) => {
         next(err)
     }
 }
-const getHotelName = async (req, res, nest) => {
-    const pattern=req.params.value
-    try{
-        const test= await Hotels.find( { city: { $regex: pattern, $options: 'i'}} )
-        res.json(test)
 
-    }catch{
 
-    }
-}
-
-module.exports= {createHotel, updateHotel, deleteHotel, getOneHotel, getAllHotel, countByIsland, countByType, getHotelRooms, getHotelName}
+module.exports= {createHotel, updateHotel, deleteHotel, getOneHotel, getAllHotel, countByIsland, countByType, getHotelRooms}

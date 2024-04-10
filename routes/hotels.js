@@ -19,7 +19,7 @@ route.get('/countByType', countByType)
 
 route.get('/rooms/:id', getHotelRooms )
 
-route.get('/search/:value', getHotelName )
+
 
 
 

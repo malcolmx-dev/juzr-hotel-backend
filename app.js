@@ -6,6 +6,8 @@ const authRoutes = require('./routes/auth')
 const authAdminRoutes = require('./routes/authAdmin')
 const userRoutes = require('./routes/user')
 const roomRoutes = require('./routes/rooms')
+const searchRoutes = require('./routes/search')
+
 
 
 
@@ -51,6 +53,7 @@ app.use('/api/auth', authRoutes)
 app.use('/api/authAdmin', authAdminRoutes)
 app.use('/api/user', userRoutes)
 app.use("/api/rooms", roomRoutes)
+app.use("/api/search", searchRoutes)
 
 
 
