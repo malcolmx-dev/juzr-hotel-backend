@@ -108,6 +108,43 @@ const getHotelRooms = async (req, res, next) => {
         next(err)
     }
 }
+const sortHotels = async (req, res, next) => {
+    try{
+        if(req.params.type=== 'island') {
+            if(req.params.order==='croissant'){
+                const hotel = await Hotels.find({island: req.params.value}).sort({cheapestPrice:1})
+                res.status(200).json(hotel)
+            }
+            if(req.params.order==='decroissant'){
+                const hotel = await Hotels.find({island: req.params.value}).sort({cheapestPrice:-1})
+                res.status(200).json(hotel)
+            }
+       }
+        if(req.params.type=== 'type') {
+            if(req.params.order==='croissant'){
+                const hotel = await Hotels.find({type: req.params.value}).sort({cheapestPrice:1})
+                res.status(200).json(hotel)
+            }
+            if(req.params.order==='decroissant'){
+                const hotel = await Hotels.find({type: req.params.value}).sort({cheapestPrice:-1})
+                res.status(200).json(hotel)
+            }
+        }   
+        if(req.params.type=== 'city') {
+            if(req.params.order==='croissant'){
+                const hotel = await Hotels.find({city: req.params.value}).sort({cheapestPrice:1})
+                res.status(200).json(hotel)
+            }
+            if(req.params.order==='decroissant'){
+                const hotel = await Hotels.find({city: req.params.value}).sort({cheapestPrice:-1})
+                res.status(200).json(hotel)
+            }
+        }  
+        
+    }catch(err){
+        next(err)
+    }
+}
 
 
-module.exports= {createHotel, updateHotel, deleteHotel, getOneHotel, getAllHotel, countByIsland, countByType, getHotelRooms}
+module.exports= {createHotel, updateHotel, deleteHotel, getOneHotel, getAllHotel, countByIsland, countByType, getHotelRooms, sortHotels}
