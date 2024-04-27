@@ -14,6 +14,7 @@ route.delete('/:id',verifyAdmin, deleteHotel)
 route.get('/find/:id', getOneHotel)
 //GETALL
 route.get('/', getAllHotel)
+
 route.get('/countByIsland', countByIsland)
 route.get('/countByType', countByType)
 route.get('/rooms/:id', getHotelRooms )

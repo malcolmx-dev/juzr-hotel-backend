@@ -5,7 +5,8 @@ const adminShema = mongoose.Schema({
     username:{type: String, required:true },
     password: {type: String, required:true },
     isAdmin:{type: Boolean, default:true },
-    hotelId:{type:String, default:null}
+    hotelId:{type:String, default:null},
+    isBoss:{type: Boolean, default:false },
 }, {timestamps:true})
 
 
