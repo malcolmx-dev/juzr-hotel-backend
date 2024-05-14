@@ -8,6 +8,7 @@ const Search = require("../model/Search")
 
 const createHotel = async (req, res, next) => {
     const newHotel = new Hotels(req.body)
+
     
     try{
         

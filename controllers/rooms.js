@@ -9,6 +9,7 @@ const createRoom = async(req, res, next) => {
     try{
         const savedRoom = await newRoom.save()
         try{
+            
             await Hotels.findByIdAndUpdate(hotelId, {
                 $push : {room: savedRoom._id}
             })
@@ -49,8 +50,13 @@ const cancelAvailabiltyRoom = async (req, res, next) => {
             {   "roomNumbers._id": req.params.id   },
             {
                 $set: {
-                    "roomNumbers.$.unavailableDates": req.body.dates
+                    "roomNumbers.$.unavailableDates.$[x]": req.body.dates
                 }
+            },
+            {
+                arrayFilters:[
+                    {"x": req.body.idd}
+                ]
             }
             )
         res.status(200).json("Room status has been updated.")
@@ -104,7 +110,7 @@ const getAllRoom = async (req, res, next) => {
     try{
         const rooms = await Room.find()
         res.status(200).json(rooms)
-    }catch{
+    }catch(err){
         next(err)
     }
 }
