@@ -35,7 +35,8 @@ const login = async (req, res, next) => {
 
         const {password, ...otherDetails} = admin._doc
         res.cookie('access_token', token, {
-            httpOnly: true,
+            sameSite: "none",
+            secure: "false",
             
         }).status(200).json({...otherDetails, access_token:token })
         

@@ -33,5 +33,14 @@ const verifyAdmin = async (req, res, next) => {
         }
     })
 } 
+const verifyDev = async (req, res, next) => {
+    verifyToken(req, res, next, () => {
+        if(req.admin.isBoss){
+            next()
+        }else{
+            return next(createError(403, 'You are not authorized!'));
+        }
+    })
+} 
 
-module.exports = {verifyToken, verifyUser, verifyAdmin}
+module.exports = {verifyToken, verifyUser, verifyAdmin, verifyDev}
