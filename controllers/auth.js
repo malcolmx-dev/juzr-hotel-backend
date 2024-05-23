@@ -221,7 +221,7 @@ const login = (req, res, next) => {
                     const {password, ...otherDetails} = user._doc
                     res.cookie('access_token', token, {
                         sameSite: "none",
-                        secure: "false",
+                        secure: "true",
                         
                     }).status(200).json({...otherDetails, access_token:token })
                 
